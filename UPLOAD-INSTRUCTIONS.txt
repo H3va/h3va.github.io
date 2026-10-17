@@ -1,11 +1,3 @@
-GitHub Pages update
+Extract this ZIP. Open the h3va.github.io repository, choose Add file > Upload files, and drag all extracted files and the assets folder into the root upload area. Do not upload the ZIP itself or an enclosing folder. Commit to main, then wait for GitHub Pages deployment.
 
-1. Extract this ZIP.
-2. Open the h3va.github.io repository in GitHub.
-3. Choose Add file > Upload files.
-4. Drag the CONTENTS of this folder (not the enclosing folder or ZIP) into the upload area. Keep the assets folder structure.
-5. Commit changes to main.
-6. After the Pages deployment completes, open https://h3va.github.io/ and select the Salesforce project.
-
-Added: expense-management.html and two Salesforce images.
-Updated: index.html and styles.css. Existing Excel case study and images retained.
+Includes the existing Excel project, a revised Salesforce story with reports and future plans, contact links, and a separate cat-and-bird page.
