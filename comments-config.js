@@ -1,2 +1,1 @@
-// Public service URL only. Never put administrator passwords here.
-window.COMMENTS_CONFIG = { apiBase: "" };
+window.COMMENTS_CONFIG = { apiBase: "https://eva-portfolio-comments.hanwen040827.workers.dev" };
