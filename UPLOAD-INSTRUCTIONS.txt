@@ -1,3 +1,7 @@
-Extract this ZIP. Open the h3va.github.io repository, choose Add file > Upload files, and drag all extracted files and the assets folder into the root upload area. Do not upload the ZIP itself or an enclosing folder. Commit to main, then wait for GitHub Pages deployment.
+Upload the contents of this website ZIP to the root of the h3va.github.io repository. Keep the assets folder structure.
 
-Includes the existing Excel project, a revised Salesforce story with reports and future plans, contact links, and a separate cat-and-bird page.
+New: homepage advice board, two project comment boards, 11 random pet avatar options, anonymity confirmation, privacy page and password-protected admin API client. No résumé page.
+
+IMPORTANT: Posting is not live yet. comments-config.js apiBase is intentionally empty. The separate comment-service ZIP contains backend source and setup steps. Deploy it to your own Cloudflare Worker + D1, then paste ONLY its public HTTPS service origin into comments-config.js and upload that file. Never publish the admin password or rate secret.
+
+The existing site stays on GitHub Pages. Backend credentials/account setup and live two-browser verification remain required. Browser visual QA has not been performed in this environment.

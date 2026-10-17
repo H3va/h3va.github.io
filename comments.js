@@ -1,0 +1,18 @@
+(()=>{'use strict';
+const api=(window.COMMENTS_CONFIG?.apiBase||'').replace(/\/$/,'');
+const avatars=new Set(['doudou','dazhuang',...Array.from({length:9},(_,i)=>`pet-${i}`)]);
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
+function card(c){const box=el('article',null,'comment');const head=el('div',null,'comment-head');const img=el('img');img.src=`assets/avatars/${avatars.has(c.avatar)?c.avatar:'doudou'}.jpg`;img.alt='Randomly assigned pet avatar';img.loading='lazy';head.append(img,el('strong',c.nickname),el('span',c.category,'comment-category'));const time=el('time',new Date(c.created_at).toLocaleDateString());time.dateTime=new Date(c.created_at).toISOString();box.append(head,time,el('p',c.body,'comment-body'));return box;}
+window.makeCommentCard=card;
+function confirmation(){return new Promise(resolve=>{const d=el('dialog',null,'comment-dialog');const h=el('h2','A tiny anonymity check 🐾');const p=el('p','Your message will be publicly visible under a random nickname and a cat or bird photo. We do not ask for your name or email. Please keep personal details out of your message.');const small=el('p','Anonymous to other readers does not mean untraceable: the hosting provider handles connection metadata.','muted');const yes=el('button','Post anonymously','comment-button'),no=el('button','Keep editing','comment-more');let result=false;yes.onclick=()=>{result=true;d.close();};no.onclick=()=>d.close();d.addEventListener('close',()=>{d.remove();resolve(result);},{once:true});d.append(h,p,small,no,yes);document.body.append(d);d.showModal();no.focus();});}
+for(const root of document.querySelectorAll('[data-thread]')){
+const form=root.querySelector('form'),submit=form.querySelector('[type=submit]'),status=root.querySelector('.comment-status'),list=root.querySelector('.comment-list'),more=root.querySelector('.comment-more');let page=0,busy=false;const thread=root.dataset.thread;
+if(!api){status.textContent='The message board is being set up. Posting is not open yet—please check back soon.';continue;}
+if(!api.startsWith('https://')){status.textContent='The message board is temporarily unavailable.';continue;}
+async function request(path,opts){const r=await fetch(api+path,{...opts,credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(15000)});const data=await r.json();if(!r.ok)throw Error(data.error||'Request failed');return data;}
+async function load(reset=false){more.disabled=true;try{const target=reset?0:page;const data=await request(`/comments?thread=${thread}&page=${target}`);if(reset)list.replaceChildren();for(const c of data.comments)list.append(card(c));page=target+1;more.hidden=!data.hasMore;status.textContent=list.children.length?'':'No thoughts here yet. Yours could be the first.';submit.disabled=false;}catch{status.textContent='Could not load messages. Refresh to try again. Your draft stays here.';}finally{more.disabled=false;}}
+more.onclick=()=>load();
+form.onsubmit=async e=>{e.preventDefault();if(busy||!form.reportValidity())return;busy=true;submit.disabled=true;try{if(!await confirmation())return;status.textContent='Sending your thought…';const data=await request(`/comments?thread=${thread}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({body:form.elements.body.value,category:form.elements.category.value,website:form.elements.website.value})});form.elements.body.value='';await load(true);status.textContent=`Posted as ${data.comment.nickname}. Thank you for sharing!`;}catch(err){status.textContent=`Not posted. ${err.message} Your draft is still here.`;}finally{busy=false;submit.disabled=false;}};
+load(true);
+}
+})();
