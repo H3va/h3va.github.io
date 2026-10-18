@@ -1,0 +1,41 @@
+TSMC JOURNAL - INCREMENTAL WEBSITE UPDATE
+Prepared 2026-10-18 for https://github.com/H3va/h3va.github.io
+Based on repository commit 02a047e19d3f644bcabf863b23925143b2945cf5.
+
+CONTENTS
+- index.html: replaces only the Investment Research & Financial Modeling placeholder card.
+- tsmc-dcf.html: research journal with six modeling chapters and reflections.
+- tsmc-journal.css / tsmc-journal.js: isolated article styles and image viewer.
+- assets/tsmc/v1/: versioned PNGs, original screenshots, PDF, XLSX and notes.
+
+INSTALL
+1. Keep a backup of your current repository. If you changed index.html after the baseline commit above, merge the project-card change rather than overwriting the newer homepage.
+2. Extract this ZIP. Upload index.html, tsmc-dcf.html, tsmc-journal.css, tsmc-journal.js and the assets folder to the ROOT of h3va.github.io. Keep the nested assets/tsmc/v1 path.
+3. Commit the upload. Do not delete existing files. Do not upload the ZIP itself as the website page.
+4. Open https://h3va.github.io/tsmc-dcf.html after your existing Pages deployment finishes.
+5. This file is instructions only; uploading it is optional.
+
+PRESERVATION
+Shared styles.css, comments.js, comments-config.js, comment-admin files, other project pages and existing assets are unchanged. The homepage wisdom thread and its markup are unchanged. The new page links to that existing advice corner; it does not create a new thread or service.
+
+VERIFICATION COMPLETED
+- 105 local links/anchors checked.
+- Six chapter reflection cards and figure coverage checked.
+- JavaScript syntax checked.
+- Existing comment markup/scripts and shared styles compared byte-for-byte.
+- Public XLSX differs from source only in creator/modifier email metadata.
+- Model images and 11-page PDF reviewed before integration.
+- Responsive CSS included for 960px and 560px breakpoints.
+- HTML math formatting replaces draft editor escape artifacts.
+
+VERIFICATION LIMITS - CHECK AFTER UPLOAD
+Browser visual/interaction QA was unavailable in the build environment. Actual mobile layout, image zoom/Escape/focus behavior, PDF rendering and live form interaction still need browser checks.
+A read-only request to the existing comment API returned HTTP 403 from this environment. No message was submitted. This does not establish that the existing deployed board is broken. Check normal loading and submit only your own intentional message if desired.
+No code was pushed to GitHub and no production site was deployed by this task.
+
+RESEARCH STATUS
+Historical valuation February 27, 2026; reference ordinary share price February 26, 2026; journal October 18, 2026. Terminal transition, bridge timing, WC scope, WACC proxies, book-value adjustments and dilution remain OPEN. Bull/Base/Bear scenarios are not built.
+The XLSX is editable after download; the PDF is static.
+The earlier source note B90 is retained and disclosed rather than silently revised.
+Relevant live WACC tables were checked; archived dataset copies are not bundled.
+V2 is planned, not complete. October 25 is a target, not an automatic publication.
